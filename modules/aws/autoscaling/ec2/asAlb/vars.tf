@@ -9,108 +9,98 @@ variable "name" {
 
 variable "as_version" {
   description = "The version og the config to avoid naming conflict"
-  default = ""
+  default     = ""
 }
 
 variable "vpc_zone_identifier" {
   description = "A list of subnet IDs for the ec2 instances"
-  type = "list"
-  default = []
+  type        = list(string)
+  default     = []
 }
 
 variable "max_size" {
   description = "Maximum nr of nodes on the ASG"
-  default = "10"
+  default     = "10"
 }
 
 variable "launch_configuration" {
   description = "The id of the launch configuration"
-  default = ""
+  default     = ""
 }
 
 variable "min_size" {
   description = "Minimum nr of nodes on the ASG"
-  default = "0"
+  default     = "0"
 }
 
 variable "desired_capacity" {
   description = "The inital capacity of the ASG, must be >= to min_size"
-  default = "0"
+  default     = "0"
 }
 
 variable "load_balancers" {
   description = "List of Loadbalancers to use (optional) requires the Load Balancer module"
-  type = "list"
-  default = []
+  type        = list(string)
+  default     = []
 }
 
 
 variable "health_check_grace_period" {
   description = "Time after instance comes into service before checking health OK/KO."
-  default = "300"
+  default     = "300"
 }
 
 variable "health_check_type" {
   description = "Chose ELB/EC2 for the check type"
-  default = "EC2"
+  default     = "EC2"
 }
 
 variable "wait_for_elb_capacity" {
   description = "Makes min_elb_capacity irrelevant due to precedence and waits for the instances to come to healthy status"
-  default = ""
+  default     = ""
 }
 
 variable "target_group_arns" {
   description = "List of ALBs arns to use"
-  type = "list"
-  default = [] 
+  type        = list(string)
+  default     = []
 }
 
 variable "default_cooldown" {
   description = "Default time to wait before scaling up/down"
-  default = ""
+  default     = ""
 }
 
 variable "min_elb_capacity" {
   description = ""
-  default = ""
+  default     = ""
 }
 
 variable "force_delete" {
   description = "Forces the deletion of the ASG even if not all instances are terminated, true/false"
-  default = false
+  default     = false
 }
 
 variable "termination_policies" {
   description = "OldestInstance, NewestInstance, OldestLaunchConfiguration, ClosestToNextInstanceHour, Default"
-  type = "list"
-  default = ["Default"]
+  type        = list(string)
+  default     = ["Default"]
 }
-
-# variable "suspended_processes" {
-#   description = "Allowed values are Launch, Terminate, HealthCheck, ReplaceUnhealthy, AZRebalance, AlarmNotification, ScheduledActions, AddToLoadBalancer"
-#   default = ""
-# }
-
-# variable "placement_group" {
-#   description = "The name of the placement groupCustomPol, instances cannot be spanned across multiple AZs"
-#   default = ""
-# }
 
 variable "enabled_metrics" {
   description = "Allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity, GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances, GroupTerminatingInstances, GroupTotalInstances"
-  type = "list"
-  default = []
+  type        = list(string)
+  default     = []
 }
 
 variable "wait_for_capacity_timeout" {
   description = "Amount of time terraform waits before moving no"
-  default = "0"
+  default     = "0"
 }
 
 variable "protect_from_scale_in" {
   description = "Select this option for the instances to be protected from deletion on scale in, true/false"
-  default = ""
+  default     = ""
 }
 
 /*
@@ -125,6 +115,6 @@ variable "tag_env" {
 
 variable "other_tags" {
   description = "For adding an additional values for tags"
-  type = "map"
-  default = {}
+  type        = map(string)
+  default     = {}
 }
