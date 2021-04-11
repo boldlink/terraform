@@ -13,6 +13,7 @@ variable "range_key" {
 
 variable "items" {
   description = "List of maps of attribute name/value pairs. Only the primary key attributes are required"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
+
