@@ -1,6 +1,3 @@
-terraform {
-  required_version  = "> 0.11.2"
-}
 
 resource "aws_security_group" "main" {
   name                        = "${var.name}-efs"

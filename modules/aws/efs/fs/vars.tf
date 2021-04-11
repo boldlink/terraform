@@ -1,21 +1,21 @@
 variable "name" {
   description = "The tag name"
-  default = ""
+  default     = ""
 }
 
 variable "performance_mode" {
   description = "The file system performance mode. Can be either generalPurpose or maxIO"
-  default = ""
+  default     = ""
 }
 
 variable "encrypted" {
   description = "If true, the disk will be encrypted"
-  default = ""
+  default     = ""
 }
 
 variable "kms_key_id" {
   description = "The ARN for the KMS encryption key. When specifying kms_key_id, encrypted needs to be set to true"
-  default = ""
+  default     = ""
 }
 
 /*
@@ -29,10 +29,7 @@ variable "tag_env" {
 
 variable "other_tags" {
   description = "For adding an additional values for tags"
-  type = "map"
-  default = {}
+  type        = map(string)
+  default     = {}
 }
-
-
-
 
