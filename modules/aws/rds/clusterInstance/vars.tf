@@ -1,20 +1,20 @@
 variable "name" {
   description = "The indentifier for the RDS instance"
-  default = ""
+  default     = ""
 }
 
 variable "count" {
   description = "The nr of RDS instance"
-  default = ""
+  default     = ""
 }
 
 variable "cluster_identifier" {
   description = "The identifier of the aws_rds_cluster in which to launch this instance"
-  default = ""
+  default     = ""
 }
 variable "instance_class" {
   description = "Aurora currently supports the below instance classes."
-/*
+  /*
 db.t2.small
 db.t2.medium
 db.t3.small
@@ -35,56 +35,56 @@ db.r5.12xlarge
 }
 variable "engine" {
   description = "The name of the database engine to be used for the RDS instance"
-  default = ""
+  default     = ""
 }
 
 variable "engine_version" {
   description = "The database engine version"
-  default = ""
+  default     = ""
 }
 
 variable "publicly_accessible" {
   description = "Bool to control if instance is publicly accessible."
-  default = ""
+  default     = ""
 }
 
 variable "db_subnet_group_name" {
   description = "Required if publicly_accessible = false"
-  default = ""
+  default     = ""
 }
 
 variable "db_parameter_group_name" {
   description = "The name of the DB parameter group"
-  default = ""
+  default     = ""
 }
 variable "monitoring_role_arn" {
   description = "The ARN for the IAM role that permits RDS to send enhanced monitoring metrics"
-  default = ""
+  default     = ""
 }
 
 variable "monitoring_interval" {
   description = "In seconds, to disable collecting Enhanced Monitoring metrics, specify 0. The default is 0. Valid Values: 0, 1, 5, 10, 15, 30, 60"
-  default = ""
+  default     = ""
 }
 
 variable "availability_zone" {
   description = "The EC2 Availability Zone that the DB instance is created in"
-  default = ""
+  default     = ""
 }
 
 variable "preferred_backup_window" {
   description = "The daily time range during which automated backups"
-  default = ""
+  default     = ""
 }
 
 variable "preferred_maintenance_window" {
   description = "The window to perform maintenance in. Syntax: ddd:hh24:mi-ddd:hh24:mi. Eg: Mon:00:00-Mon:03:00"
-  default = ""
+  default     = ""
 }
 
 variable "copy_tags_to_snapshot" {
   description = "Copy all Cluster tags to snapshots. Default is false"
-  default = "false"
+  default     = "false"
 }
 
 # variable "performance_insights_enabled" {
@@ -107,6 +107,6 @@ variable "tag_env" {
 
 variable "other_tags" {
   description = "For adding an additional values for tags"
-  type = "map"
-  default = {}
+  type        = map(string)
+  default     = {}
 }

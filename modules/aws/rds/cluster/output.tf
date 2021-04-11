@@ -1,13 +1,13 @@
 output "id" {
-  value = "${aws_rds_cluster.main.id}"
-}       
+  value = aws_rds_cluster.main.id
+}
 
 output "identifier" {
-  value = "${aws_rds_cluster.main.cluster_identifier}"
+  value = aws_rds_cluster.main.cluster_identifier
 }
 
 output "cluster_resource_id" {
-  value = "${aws_rds_cluster.main.cluster_resource_id}"
+  value = aws_rds_cluster.main.cluster_resource_id
 }
 
 # output "cluster_members" {
@@ -35,7 +35,7 @@ output "cluster_resource_id" {
 # }
 
 output "reader_endpoint" {
-  value = "${aws_rds_cluster.main.reader_endpoint}"
+  value = aws_rds_cluster.main.reader_endpoint
 }
 
 # output "engine" {

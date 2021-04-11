@@ -26,10 +26,11 @@ variable "copy_tags_to_snapshot" {
   default = true
 }
 
-variable "db_subnet_group_name" {}
+variable "db_subnet_group_name" {
+}
 
 variable "enabled_cloudwatch_logs_exports" {
-  type = "list"
+  type    = list(string)
   default = []
 }
 
@@ -71,12 +72,12 @@ variable "monitoring_role_arn" {
 
 variable "availability_zone" {
   description = "Only set if multi_az is in the default seeting (false) for multi_az = true leave this blank"
-  default = ""
+  default     = ""
 }
 
 variable "multi_az" {
   description = "Bol. if specified leave availability_zone empty, default = false"
-  default = false
+  default     = false
 }
 
 variable "option_group_name" {
@@ -87,16 +88,18 @@ variable "parameter_group_name" {
   default = ""
 }
 
-variable "username" {}
+variable "username" {
+}
 
-variable "password" {}
+variable "password" {
+}
 
 variable "port" {
   default = 3306
 }
 
 variable "vpc_security_group_ids" {
-  type = "list"
+  type    = list(string)
   default = []
 }
 
@@ -112,15 +115,20 @@ variable "storage_type" {
   default = "gp2"
 }
 
-variable "name" {}
+variable "name" {
+}
 
 // Tags
 
-variable "tag_project" {}
+variable "tag_project" {
+}
 
-variable "env" {}
+variable "env" {
+}
 
-variable "tag_costcenter" {}
+variable "tag_costcenter" {
+}
 
-variable "tag_modifiedby" {}
+variable "tag_modifiedby" {
+}
 

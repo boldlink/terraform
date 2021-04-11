@@ -1,12 +1,12 @@
 variable "name" {
   description = "The name of the subnet group"
-  default = ""
+  default     = ""
 }
 
 variable "subnet_ids" {
   description = "The chosen VPC subnet is to use for the RDS"
-  type = "list"
-  default = []
+  type        = list(string)
+  default     = []
 }
 
 /*
@@ -19,6 +19,6 @@ variable "tag_env" {
 
 variable "other_tags" {
   description = "For adding an additional values for tags"
-  type = "map"
-  default = {}
+  type        = map(string)
+  default     = {}
 }
