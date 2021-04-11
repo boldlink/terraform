@@ -5,18 +5,18 @@ variable "vpc_id" {
 variable "type" { default = "ingress" }
 
 ################################
-variable "security_group" { 
-  type = map(string) 
-  default = {}  
+variable "security_group" {
+  type    = map(string)
+  default = {}
 }
 
 variable "sg_protocol" { default = "tcp" }
 
 
 ################################
-variable "cidr_block" { 
-  type = map(string) 
-  default = {}  
+variable "cidr_block" {
+  type    = map(string)
+  default = {}
 }
 
 variable "cidr_protocol" { default = "tcp" }

@@ -1,6 +1,3 @@
-terraform {
-  required_version = "> 0.1.12"
-}
 
 resource "aws_security_group_rule" "main" {
   from_port         = var.port

@@ -1,12 +1,11 @@
-
 variable "vpc_id" {
   description = "The vpc id to create the security group in"
 }
 
 variable "allowed_cidr" {
   description = "The ip(s) allowed to ssh in"
-  type = "list"
-  default = []
+  type        = list(string)
+  default     = []
 }
 
 /*
@@ -24,6 +23,7 @@ variable "tag_env" {
 
 variable "other_tags" {
   description = "For adding an additional values for tags"
-  type = "map"
-  default = {}
+  type        = map(string)
+  default     = {}
 }
+
