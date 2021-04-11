@@ -1,23 +1,32 @@
-variable "name" {}
+variable "name" {
+}
 
-variable "is_enabled" { default = true }
+variable "is_enabled" {
+  default = true
+}
 
-variable "key_rotation_enabled" { default = false }
+variable "key_rotation_enabled" {
+  default = false
+}
 
-variable "kmsPolicy" { default = "" }
+variable "kmsPolicy" {
+  default = ""
+}
 
-variable "smPolicy" { default = "" }
+variable "smPolicy" {
+  default = ""
+}
 
 /*
 Tags
 */
 variable "tag_env" {
   description = "What is the environment"
-  default = ""
+  default     = ""
 }
 
 variable "other_tags" {
-  type = "map"
+  type    = map(string)
   default = {}
 }
 
