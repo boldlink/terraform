@@ -9,3 +9,4 @@ variable "ecdsa_curve" {
 variable "rsa_bits" {
   default = 4096
 }
+
