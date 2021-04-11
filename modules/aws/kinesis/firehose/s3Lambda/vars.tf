@@ -13,28 +13,32 @@ variable "destination" { default = "extended_s3" }
 
 variable "bucket_arn" { default = "" }
 
-variable "buffer_size" { default = 60 }
+variable "error_output_prefix" { default = "" }
 
-variable "buffer_interval" { default = 300 }
+variable "processing_configuration_enabled" { default = false }
 
-variable "error_output_prefix" { default = "kinesis_error/" }
+variable "lambda_arn" { default = "" }
+
+variable "lambda_version" { default = "" }
+
+variable "s3_backup_mode" { default = "Disabled" }
+
+variable "s3_backup_configuration_bucket_arn" { default = "" }
+
+variable "s3_backup_configuration_role_arn" { default = "" }
 
 variable "extended_s3_configuration_bucket_arn" { default = "" }
 
-variable prefix { default = "S3_Delivery" }
+variable "prefix" { default = "S3_Delivery" }
 
 variable "compression_format" {
   description = "The format to store files in s3, the accepted values are UNCOMPRESSED (default) GZIP; ZIP and Snappy"
-  default = "GZIP"
+  default     = "GZIP"
 }
-
-variable "kms_key_arn" { default = "" }
-
-variable "kinesis_stream_arn" { default = "" }
 
 variable "logging_status" { default = true }
 
-variable "log_group_name" { default = "default" }
+variable "log_group_name" { default = "" }
 
 variable "log_stream_name" { default = "S3_Delivery" }
 
@@ -45,6 +49,6 @@ Tags
 variable "tag_env" { default = "" }
 
 variable "other_tags" {
-  type = "map"
+  type    = map(string)
   default = {}
 }

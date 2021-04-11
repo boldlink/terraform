@@ -16,7 +16,7 @@ variable "buffer_size" { default = 10 }
 
 variable "buffer_interval" { default = 60 }
 
-variable prefix { default = "S3_Delivery" }
+variable "prefix" { default = "S3_Delivery" }
 
 variable "compression_format" { default = "GZIP" }
 
@@ -29,7 +29,7 @@ Tags
 */
 
 variable "other_tags" {
-  type = "map"
+  type    = map(string)
   default = {}
 }
 
