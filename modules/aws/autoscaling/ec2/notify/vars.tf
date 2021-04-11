@@ -1,11 +1,13 @@
 variable "group_names" {
-  type = "list"
+  type    = list(string)
   default = []
 }
 
 variable "notifications" {
-  type = "list"
+  type    = list(string)
   default = []
 }
 
-variable "topic_arn" {}
+variable "topic_arn" {
+}
+

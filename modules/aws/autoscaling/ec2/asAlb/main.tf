@@ -1,7 +1,3 @@
-terraform {
-  required_version = "> 0.9.8"
-}
-
 resource "aws_autoscaling_group" "main" {
   name                      = "${var.as_version}.${var.name}.as"
   launch_configuration      = var.launch_configuration

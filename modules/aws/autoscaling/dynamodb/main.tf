@@ -1,7 +1,3 @@
-terraform {
-  required_version = "> 0.11.2"
-}
-
 resource "aws_appautoscaling_target" "main" {
   max_capacity       = var.max_capacity
   min_capacity       = var.min_capacity
