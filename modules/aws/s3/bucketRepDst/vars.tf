@@ -1,6 +1,8 @@
-variable "name" {}
+variable "name" {
+}
 
-variable "account" {}
+variable "account" {
+}
 
 variable "region" {
   default = "eu-west-2"
@@ -14,6 +16,7 @@ variable "kms_key_usage" {
 variable "kms_is_enabled" {
   default = true
 }
+
 variable "kms_enable_key_rotation" {
   default = false
 }
@@ -35,8 +38,8 @@ variable "s3_lifecycle_rule_enabled" {
   default = false
 }
 
-
-variable "s3_key_prefix" {}
+variable "s3_key_prefix" {
+}
 
 variable "s3_transition_days" {
   default = 90 # 3 months
@@ -54,15 +57,15 @@ variable "s3_expirition_days" {
 //  description = "The ARN allowed to access this bucket form the source account"
 //}
 variable "s3_source_account" {
-  type = "list"
+  type = list(string)
 }
 
 variable "s3_source_account_root" {
-  type = "list"
+  type = list(string)
 }
 
 variable "s3_source_account_id" {
-  type = "list"
+  type = list(string)
 }
 
 variable "s3_force_destroy" {
@@ -77,8 +80,7 @@ variable "tag_env" {
 
 variable "other_tags" {
   description = "For adding an additional values for tags"
-  type = "map"
-  default = {}
+  type        = map(string)
+  default     = {}
 }
-
 

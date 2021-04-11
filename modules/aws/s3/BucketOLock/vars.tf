@@ -1,6 +1,8 @@
-variable "name" {}
+variable "name" {
+}
 
-variable "account" {}
+variable "account" {
+}
 
 variable "region" {
   default = "eu-west-2"
@@ -14,6 +16,7 @@ variable "kms_key_usage" {
 variable "kms_is_enabled" {
   default = true
 }
+
 variable "kms_enable_key_rotation" {
   default = false
 }
@@ -35,8 +38,8 @@ variable "s3_lifecycle_rule_enabled" {
   default = false
 }
 
-
-variable "s3_key_prefix" {}
+variable "s3_key_prefix" {
+}
 
 variable "s3_transition_days" {
   default = 90 # 3 months
@@ -50,21 +53,21 @@ variable "s3_expirition_days" {
   default = 365 # 1 years
 }
 
-
 variable "s3_object_lock_configuration_status" {
   default = "Enabled"
 }
 
 variable "s3_object_lock_configuration_mode" {
   description = "Governance = Permissions allow to remove OL, Compliance = can't remove OL"
-  default = "GOVERNANCE"
+  default     = "GOVERNANCE"
 }
 
 variable "s3_object_lock_configuration_years" {
   default = 3
 }
 
-variable "s3_source_account" {}
+variable "s3_source_account" {
+}
 
 variable "s3_force_destroy" {
   default = false
@@ -78,6 +81,7 @@ variable "tag_env" {
 
 variable "other_tags" {
   description = "For adding an additional values for tags"
-  type = "map"
-  default = {}
+  type        = map(string)
+  default     = {}
 }
+

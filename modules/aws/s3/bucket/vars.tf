@@ -1,16 +1,18 @@
 variable "acl" {
   description = "The acl for the bucket"
-  default = "private"
+  default     = "private"
 }
 
-variable "policy" {}
+variable "policy" {
+}
+
 variable "destroy" {
   description = "The policy for retention of the bucket, default false"
-  default = "false"
+  default     = "false"
 }
 
 variable "versioning" {
-  default = false
+  default     = false
   description = "Keep multiple versions of an object in the same bucket. Default false"
 }
 
@@ -29,6 +31,7 @@ variable "tag_env" {
 
 variable "other_tags" {
   description = "For adding an additional values for tags"
-  type = "map"
-  default = {}
+  type        = map(string)
+  default     = {}
 }
+

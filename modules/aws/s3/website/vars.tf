@@ -1,12 +1,15 @@
-variable "fqdn" {}
+variable "fqdn" {
+}
 
 variable "acl" {
   default = "private"
 }
 
-variable "target_bucket" {}
+variable "target_bucket" {
+}
 
-variable "target_prefix" {}
+variable "target_prefix" {
+}
 
 variable "index_document" {
   default = "index.html"
@@ -16,7 +19,8 @@ variable "error_document" {
   default = "404.html"
 }
 
-variable "policy" {}
+variable "policy" {
+}
 
 variable "destroy" {
   default = false
@@ -37,6 +41,7 @@ variable "tag_env" {
 
 variable "other_tags" {
   description = "For adding an additional values for tags"
-  type = "map"
-  default = {}
+  type        = map(string)
+  default     = {}
 }
+

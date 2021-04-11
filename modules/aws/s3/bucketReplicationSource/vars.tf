@@ -1,6 +1,8 @@
-variable "name" {}
+variable "name" {
+}
 
-variable "account" {}
+variable "account" {
+}
 
 variable "iam_policy_path" {
   default = "/"
@@ -63,16 +65,20 @@ variable "replication_configuration_status" {
 }
 
 variable "s3_source_account_root" {
-  type = "list"
+  type = list(string)
 }
 
-variable "s3_destination_account_id" {}
+variable "s3_destination_account_id" {
+}
 
-variable "s3_destination_bucket_arn" {}
+variable "s3_destination_bucket_arn" {
+}
 
-variable "s3_destination_kms_key_id" {}
+variable "s3_destination_kms_key_id" {
+}
 
-variable "s3_destination_region" {}
+variable "s3_destination_region" {
+}
 
 variable "storage_class" {
   default = "STANDARD_IA"
@@ -94,6 +100,7 @@ variable "tag_env" {
 
 variable "other_tags" {
   description = "For adding an additional values for tags"
-  type = "map"
-  default = {}
+  type        = map(string)
+  default     = {}
 }
+

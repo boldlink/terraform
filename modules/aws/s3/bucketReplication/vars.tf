@@ -1,6 +1,8 @@
-variable "name" {}
+variable "name" {
+}
 
-variable "s3_destination_account" {}
+variable "s3_destination_account" {
+}
 
 variable "s3_destination_region" {
   default = "eu-west-2"
@@ -19,8 +21,8 @@ variable "s3_lifecycle_rule_enabled" {
   default = false
 }
 
-
-variable "s3_key_prefix" {}
+variable "s3_key_prefix" {
+}
 
 variable "s3_transition_days" {
   default = 90 # 3 months
@@ -29,6 +31,7 @@ variable "s3_transition_days" {
 variable "s3_replication_key_arn" {
   default = ""
 }
+
 variable "s3_transition_storage_class" {
   default = "STANDARD_IA"
 }
@@ -38,7 +41,7 @@ variable "s3_expiration_days" {
 }
 
 variable "source_account_identifiers" {
-  type = "list"
+  type = list(string)
 }
 
 variable "s3_force_destroy" {
@@ -53,7 +56,7 @@ variable "tag_env" {
 
 variable "other_tags" {
   description = "For adding an additional values for tags"
-  type = "map"
-  default = {}
+  type        = map(string)
+  default     = {}
 }
 
