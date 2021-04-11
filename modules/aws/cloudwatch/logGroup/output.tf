@@ -1,6 +1,8 @@
 output "arn" {
-  value = "${aws_cloudwatch_log_group.main.arn}"
+  value = aws_cloudwatch_log_group.main.arn
 }
+
 output "name" {
-  value = "${aws_cloudwatch_log_group.main.name}"
+  value = aws_cloudwatch_log_group.main.name
 }
+

@@ -1,6 +1,8 @@
 variable "stream_name" {
   description = "The stream name"
-  default = ""
+  default     = ""
 }
 
-variable "logGroup" {}
+variable "logGroup" {
+}
+

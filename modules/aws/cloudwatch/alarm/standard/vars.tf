@@ -25,13 +25,13 @@ variable "threshold" {
 variable "alarm_description" {}
 
 variable "ok_actions" {
-  type = "list"
+  type = list(string)
 }
 
 variable "alarm_actions" {
-  type = "list"
+  type = list(string)
 }
 
 variable "insufficient_data_actions" {
-  type = "list"
+  type = list(string)
 }

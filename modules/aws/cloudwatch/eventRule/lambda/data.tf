@@ -1,7 +1,8 @@
-data "aws_caller_identity" "current" {}
+data "aws_caller_identity" "current" {
+}
 
 data "aws_lambda_function" "dataSourceLambdaFunctionMonitor" {
-  function_name = "${var.name}"
+  function_name = var.name
 }
 
 data "aws_iam_policy_document" "assume_role_lambda" {
@@ -47,3 +48,4 @@ data "aws_iam_policy_document" "lambdaMonitorLogsPolicy" {
     resources = ["*"]
   }
 }
+
