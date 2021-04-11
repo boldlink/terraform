@@ -1,11 +1,11 @@
 variable "max_capacity" {
   description = "Specify max capacity to scale to"
-  default = ""
+  default     = ""
 }
 
 variable "min_capacity" {
   description = "The initial value to start with and fall back when scaling down"
-  default = ""
+  default     = ""
 }
 
 /*
@@ -16,12 +16,12 @@ variable "min_capacity" {
 
 variable "resource_id" {
   description = "The resrouce id, see above"
-  default = ""
+  default     = ""
 }
 
 variable "role_arn" {
   description = "The iam role you assign for scaling, limit to the resources which will be scaled"
-  default = ""
+  default     = ""
 }
 
 /*
@@ -37,11 +37,11 @@ rds:cluster:ReadReplicaCount - The count of Aurora Replicas in an Aurora DB clus
 */
 variable "scalable_dimension" {
   description = "The scalable dimension of the scalable target"
-  default = ""
+  default     = ""
 }
 
 variable "service_namespace" {
   description = "ecs | elasticmapreduce | ec2 | appstream | dynamodb | rds"
-  default = ""
+  default     = ""
 }
 
