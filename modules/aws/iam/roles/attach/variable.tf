@@ -4,12 +4,12 @@ variable "name" {
 
 variable "iam_policy_path" {
   description = "IAM policy doc for permissions"
-  default = "/"
+  default     = "/"
 }
 
 variable "iam_policy_doc" {
   description = "policy document"
-  default = ""
+  default     = ""
 }
 
 variable "role" {}

@@ -1,16 +1,13 @@
-terraform {
-  required_version  = "> 0.11.2"
-}
 
 resource "aws_iam_policy" "main" {
-  name                      = "${var.name}"
-  description               = "${var.name} IAM policy"
-  path                      = "${var.iam_policy_path}"
-  policy                    = "${var.iam_policy_doc}"
+  name        = var.name
+  description = "${var.name} IAM policy"
+  path        = var.iam_policy_path
+  policy      = var.iam_policy_doc
 }
 
 resource "aws_iam_role_policy_attachment" "main" {
-  name                      = "${var.name}"
-  role                      = "${var.role}"
-  policy_arn                = "${aws_iam_policy.main.arn}"
+  name       = var.name
+  role       = var.role
+  policy_arn = aws_iam_policy.main.arn
 }

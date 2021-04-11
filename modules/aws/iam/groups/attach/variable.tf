@@ -1,16 +1,18 @@
 variable "name" {
   description = "Name of the Role and Policy"
-  default = ""
+  default     = ""
 }
 
 variable "iam_policy_path" {
   description = "IAM policy doc for permissions"
-  default = "/"
+  default     = "/"
 }
 
 variable "iam_policy_doc" {
   description = "policy document"
-  default = ""
+  default     = ""
 }
 
-variable "group" {}
+variable "group" {
+}
+

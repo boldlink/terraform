@@ -1,6 +1,4 @@
-terraform {
-  required_version = "> 0.11.2"
-}
+
 
 resource "aws_iam_instance_profile" "main" {
   name = "${var.name}.iam_role"

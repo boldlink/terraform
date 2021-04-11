@@ -1,11 +1,15 @@
-variable "name" {}
+variable "name" {
+}
 
 variable "group_users" {
-  type = "list"
+  type = list(string)
 }
 
 //variable "users" {}
 
-variable "path" {}
+variable "path" {
+}
 
-variable "policy" {}
+variable "policy" {
+}
+

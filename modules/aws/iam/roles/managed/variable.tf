@@ -1,13 +1,16 @@
-variable "name" {}
+variable "name" {
+}
 
 variable "iam_path" {
   description = "IAM policy doc for permissions"
-  default = "/"
+  default     = "/"
 }
 
-variable "policy_arn" {}
+variable "policy_arn" {
+}
 
-variable "assume_role_policy" {}
+variable "assume_role_policy" {
+}
 
 variable "tag_env" {
   description = "The environemnt this resource is being deployed to"
@@ -16,8 +19,11 @@ variable "tag_env" {
 
 variable "other_tags" {
   description = "For adding an additional values for tags"
-  type = "map"
-  default = {}
+  type        = map(string)
+  default     = {}
 }
 
-variable "iam_ip_enabled" { default = false }
+variable "iam_ip_enabled" {
+  default = false
+}
+
