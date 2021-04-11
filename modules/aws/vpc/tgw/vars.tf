@@ -1,4 +1,5 @@
-variable "cidr" {}
+variable "cidr" {
+}
 
 variable "vpc_tenancy" {
   description = "Instance type of tenancy, accepted values are default/dedicated"
@@ -15,22 +16,24 @@ variable "enable_dns_hostnames" {
   default     = true
 }
 
-variable dhcp_domain_name {
+variable "dhcp_domain_name" {
   description = "The domain name for instances in this VPC"
-  default = "demo.local"
+  default     = "demo.local"
 }
 
-variable "region" {}
+variable "region" {
+}
 
 variable "private_subnets" {
-  type = "list"
+  type = list(string)
 }
 
-variable domain_name_servers {
+variable "domain_name_servers" {
   description = "Search list of the IP's or FQDN of your DNS servers (WIP)"
-  type = "list"
-  default = ["AmazonProvidedDNS"]
+  type        = list(string)
+  default     = ["AmazonProvidedDNS"]
 }
+
 /*
 variable dns_ntp_servers {
   description = "Search list of the IP's or time servers (WIP)"
@@ -38,19 +41,21 @@ variable dns_ntp_servers {
 }
 */
 
-variable enable_dhcp {
+variable "enable_dhcp" {
   description = "Set to true/false if you want to use this resource"
-  default = true
+  default     = true
 }
 
-variable azs {
+variable "azs" {
   description = "List of Azs for your environment"
-  default = []
+  default     = []
 }
 
-variable "name" {}
+variable "name" {
+}
 
-variable "account" {}
+variable "account" {
+}
 
 variable "amazon_side_asn" {
   default = 64512
@@ -94,11 +99,14 @@ variable "transit_gateway_default_route_table_propagation" {
 
 // TAGS
 
-variable "tag_project" {}
+variable "tag_project" {
+}
 
-variable "tag_env" {}
+variable "tag_env" {
+}
 
-variable "tag_costcenter" {}
+variable "tag_costcenter" {
+}
 
 variable "tag_lastmodifyby" {
   default = "null"
@@ -107,3 +115,4 @@ variable "tag_lastmodifyby" {
 variable "tag_lastmodifydate" {
   default = "null"
 }
+

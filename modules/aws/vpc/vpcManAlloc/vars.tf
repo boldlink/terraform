@@ -1,6 +1,8 @@
-variable "region" {}
+variable "region" {
+}
 
-variable "account" {}
+variable "account" {
+}
 
 variable "cidr" {
   description = "VPC address block"
@@ -22,9 +24,9 @@ variable "enable_dns_hostnames" {
   default     = true
 }
 
-variable dhcp_domain_name {
+variable "dhcp_domain_name" {
   description = "The domain name for instances in this VPC"
-  default = "demo.local"
+  default     = "demo.local"
 }
 
 variable "map_ip" {
@@ -32,12 +34,12 @@ variable "map_ip" {
   default     = false
 }
 
-
-variable domain_name_servers {
+variable "domain_name_servers" {
   description = "Search list of the IP's or FQDN of your DNS servers (WIP)"
-  type = "list"
-  default = ["AmazonProvidedDNS"]
+  type        = list(string)
+  default     = ["AmazonProvidedDNS"]
 }
+
 /*
 variable dns_ntp_servers {
   description = "Search list of the IP's or time servers (WIP)"
@@ -45,42 +47,45 @@ variable dns_ntp_servers {
 }
 */
 
-variable enable_dhcp {
+variable "enable_dhcp" {
   description = "Set to true/false if you want to use this resource"
-  default = true
+  default     = true
 }
 
-variable azs {
+variable "azs" {
   description = "List of Azs for your environment"
-  default = []
+  default     = []
 }
 
-variable public_subnets {
+variable "public_subnets" {
   description = "The IP ranges for the Public subnets"
-  default = []
+  default     = []
 }
 
-variable private_subnets {
+variable "private_subnets" {
   description = "Ranges for the VPC Private subnets"
-  default = []
+  default     = []
 }
 
-variable db_subnets {
+variable "db_subnets" {
   description = "Ranges for the VPC Private RDS subnets"
-  default = []
+  default     = []
 }
 
-variable app_subnets {
+variable "app_subnets" {
   description = "Ranges for the VPC Private APPs subnets"
-  default = []
+  default     = []
 }
 
-variable rs_subnets {
+variable "rs_subnets" {
   description = "Ranges for the VPC Private Redshift subnets"
-  default = []
+  default     = []
 }
 
-variable "nat_eip" { type = "list" default = [] }
+variable "nat_eip" {
+  type    = list(string)
+  default = []
+}
 
 /*
 Tags
@@ -95,4 +100,8 @@ variable "tag_env" {
   default     = ""
 }
 
-variable "other_tags" { type = "map" default = {} }
+variable "other_tags" {
+  type    = map(string)
+  default = {}
+}
+

@@ -1,6 +1,8 @@
-variable "region" {}
+variable "account" {
+}
 
-variable "account" {}
+variable "region" {
+}
 
 variable "cidr" {
   description = "VPC address block"
@@ -22,9 +24,9 @@ variable "enable_dns_hostnames" {
   default     = true
 }
 
-variable dhcp_domain_name {
+variable "dhcp_domain_name" {
   description = "The domain name for instances in this VPC"
-  default = "demo.local"
+  default     = ""
 }
 
 variable "map_ip" {
@@ -32,12 +34,12 @@ variable "map_ip" {
   default     = false
 }
 
-
-variable domain_name_servers {
+variable "domain_name_servers" {
   description = "Search list of the IP's or FQDN of your DNS servers (WIP)"
-  type = "list"
-  default = ["AmazonProvidedDNS"]
+  type        = list(string)
+  default     = ["AmazonProvidedDNS"]
 }
+
 /*
 variable dns_ntp_servers {
   description = "Search list of the IP's or time servers (WIP)"
@@ -45,39 +47,39 @@ variable dns_ntp_servers {
 }
 */
 
-variable enable_dhcp {
+variable "enable_dhcp" {
   description = "Set to true/false if you want to use this resource"
-  default = true
+  default     = ""
 }
 
-variable azs {
+variable "azs" {
   description = "List of Azs for your environment"
-  default = []
+  default     = []
 }
 
-variable public_subnets {
+variable "public_subnets" {
   description = "The IP ranges for the Public subnets"
-  default = []
+  default     = []
 }
 
-variable private_subnets {
+variable "private_subnets" {
   description = "Ranges for the VPC Private subnets"
-  default = []
+  default     = []
 }
 
-variable db_subnets {
-  description = "Ranges for the VPC Private RDS subnets"
-  default = []
+variable "app_subnets" {
+  description = "Ranges for the VPC Private db subnets"
+  default     = []
 }
 
-variable app_subnets {
-  description = "Ranges for the VPC Private APPs subnets"
-  default = []
+variable "db_subnets" {
+  description = "Ranges for the VPC Private db subnets"
+  default     = []
 }
 
-variable rs_subnets {
+variable "rs_subnets" {
   description = "Ranges for the VPC Private Redshift subnets"
-  default = []
+  default     = []
 }
 
 /*
@@ -93,4 +95,8 @@ variable "tag_env" {
   default     = ""
 }
 
-variable "other_tags" { type = "map" default = {} }
+variable "other_tags" {
+  type    = map(string)
+  default = {}
+}
+
