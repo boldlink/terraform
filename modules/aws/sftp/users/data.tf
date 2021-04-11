@@ -1,6 +1,6 @@
 // Users SSH public keys (assumes they have been previously created in Secrets Manager)
 data "aws_secretsmanager_secret_version" "public_keys" {
-  count     = "${length(var.users)}"
+  count     = length(var.users)
   secret_id = "sftp-${var.servername}-${element(keys(var.users), count.index)}-sshpublickey"
 }
 
@@ -22,7 +22,7 @@ data "aws_iam_policy_document" "assume_role" {
 
 // IAM policies that enable access to the S3 buckets
 data "aws_iam_policy_document" "user-access-policy" {
-  count = "${length(var.users)}"
+  count = length(var.users)
 
   statement {
     effect = "Allow"
@@ -33,7 +33,16 @@ data "aws_iam_policy_document" "user-access-policy" {
     ]
 
     resources = [
-      "arn:aws:s3:::${element(split("/", element(split("\n", "${lookup(var.users, "${element(keys(var.users), count.index)}")}"),0)),1)}",
+      "arn:aws:s3:::${element(
+        split(
+          "/",
+          element(
+            split("\n", var.users[element(keys(var.users), count.index)]),
+            0,
+          ),
+        ),
+        1,
+      )}",
     ]
   }
 
@@ -49,7 +58,12 @@ data "aws_iam_policy_document" "user-access-policy" {
     ]
 
     resources = [
-      "arn:aws:s3:::${substr(trimspace(lookup(var.users, "${element(keys(var.users), count.index)}")), 1, -1)}/*",
+      "arn:aws:s3:::${substr(
+        trimspace(var.users[element(keys(var.users), count.index)]),
+        1,
+        -1,
+      )}/*",
     ]
   }
 }
+

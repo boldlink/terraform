@@ -15,7 +15,7 @@ variable "servername" {
 
 variable "other_tags" {
   description = "For adding an additional values for tags"
-  type        = "map"
+  type        = map(string)
   default     = {}
 }
 
@@ -24,12 +24,12 @@ variable "other_tags" {
 // is the actual home directory path
 variable "users" {
   description = "user details"
-  type        = "map"
+  type        = map(string)
   default     = {}
-
   /* EXAMPLE
   default = {
     jfraga = "/caspian-dev-s3-sftp/home/jfraga"
   }
   */
 }
+
