@@ -1,7 +1,3 @@
-terraform {
-  required_version = "> 0.11.12"
-}
-
 #  Cloudwatch resources
 resource "aws_cloudwatch_log_group" "main" {
   name = "/aws/asg/${var.name}"
@@ -31,7 +27,6 @@ variable 'admin_remove = false'
 2) Push the secure logs to cloudwatch
 3) Use a combination of config and secrets buckets to manage ssh access allowing you to decide
 Who has access to which type of services, mode detail on this to follow in a README.md
-
 */
 resource "tls_private_key" "main" {
   algorithm = var.algorithm
@@ -72,15 +67,9 @@ resource "aws_iam_role_policy_attachment" "main" {
 #  Security Group
 resource "aws_security_group" "main" {
   name        = var.name
-  description = "${var.name} ASG Group ssh SG"
+  description = "${var.name} ASG Group Security Group"
   vpc_id      = var.vpc_id
 
-  ingress {
-    from_port   = var.igr_from
-    to_port     = var.igr_to
-    protocol    = var.igr_protocol
-    cidr_blocks = var.igr_cidr_blocks
-  }
   egress {
     from_port   = 0
     to_port     = 0
@@ -94,6 +83,26 @@ resource "aws_security_group" "main" {
     },
     var.other_tags,
   )
+}
+
+resource "aws_security_group_rule" "sg" {
+  for_each                 = var.security_group
+  security_group_id        = aws_security_group.main.id
+  from_port                = each.key
+  to_port                  = each.key
+  protocol                 = var.sg_protocol
+  type                     = var.type
+  source_security_group_id = each.value
+}
+
+resource "aws_security_group_rule" "cidr" {
+  for_each          = var.cidr_block
+  security_group_id = aws_security_group.main.id
+  from_port         = each.key
+  to_port           = each.key
+  protocol          = var.cidr_protocol
+  type              = var.type
+  cidr_blocks       = each.value
 }
 
 #  ASG resources
@@ -131,15 +140,11 @@ resource "aws_launch_template" "main" {
     }
   }
   ebs_optimized = var.ebs_optimized
-  iam_instance_profile {
-    name = aws_iam_instance_profile.main.name
-  }
+  iam_instance_profile { name = aws_iam_instance_profile.main.name }
   image_id      = data.aws_ami.ami.id
   instance_type = var.instance_type
   key_name      = aws_key_pair.main.key_name
-  monitoring {
-    enabled = var.monitoring_enabled
-  }
+  monitoring { enabled = var.monitoring_enabled }
   network_interfaces {
     description                 = "ASG Group NI of ${var.name} Cluster"
     associate_public_ip_address = var.associate_public_ip_address
@@ -174,7 +179,7 @@ resource "aws_launch_template" "main" {
       var.other_tags,
     )
   }
-  user_data = data.template_cloudinit_config.config.rendered
+  user_data = base64encode(data.template_cloudinit_config.config.rendered)
 }
 
 # #  Autoscaling Policies Resources

@@ -87,18 +87,26 @@ variable "stack_type" { default = "asgfull.default"}
 
 variable "vpc_id" {}
 
-variable "igr_from" { default = "22" }
+variable "type" { default = "ingress" }
 
-variable "igr_to" { default = "22" }
-
-variable "igr_protocol" { default = "tcp" }
-
-variable "igr_cidr_blocks" {
-  type    = list(string)
-  default = ["127.0.0.1/32"] # By default you cannot network connect to ssh (loopback address).
+################################
+variable "security_group" { 
+  type = map(string) 
+  default = {}
 }
 
-variable "port" { default = "22" }
+variable "sg_protocol" { default = "tcp" }
+
+
+################################
+variable "cidr_block" { 
+  type = map(string) 
+  default = {}
+}
+
+variable "cidr_protocol" { default = "tcp" }
+
+################################
 
 # Launch Template
 

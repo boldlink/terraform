@@ -79,42 +79,26 @@ data "aws_iam_policy_document" "asg" {
   }
 }
 
+# data "template_file" "init" {
+#   # vars = {
+#   # }
+#   template = file("${path.module}/scripts/init.cfg")
+# }
 
+# data "template_file" "userdata" {
+#   vars = {
+#     debug = var.debug_script
+#   }
+#   template = file("${path.module}/scripts/user_data.sh")
+# }
 
-//data "template_file" "dashboard" {
-//   vars {
-//    cluster_name             = "${aws_autoscaling_group.main.name}"
-//  }
-//  template                  = "${file("${path.module}/dashboard.json")}"
-//
-//}
-
-
-data "template_file" "init" {
-  # vars = {
-  # }
-  template = file("${path.module}/scripts/init.cfg")
-}
-
-data "template_file" "userdata" {
-  vars = {
-    ami_architecture                  = var.ami_architecture
-    loggroup                          = aws_cloudwatch_log_group.main.name
-    stack_type                        = var.stack_type
-    # del_ec2_user                      = "${var.del_ec2_user}"
-    env                               = var.tag_env
-    default_port                      = var.port
-    debug                             = var.debug_script
-  }
-  template                  = file("${path.module}/scripts/user_data.sh")
-}
-
-data "template_file" "cwldata" {
-  vars = {
-    log_group = aws_cloudwatch_log_group.main.name
-  }
-  template = file("${path.module}/scripts/cwl_data.sh")
-}
+# data "template_file" "cwldata" {
+#   vars = {
+#     log_group = aws_cloudwatch_log_group.main.name
+#     debug = var.debug_script
+#   }
+#   template = file("${path.module}/scripts/cwl_data.sh")
+# }
 
 data "template_cloudinit_config" "config" {
   gzip          = false
@@ -124,18 +108,40 @@ data "template_cloudinit_config" "config" {
   part {
     filename     = "init.cfg"
     content_type = "text/cloud-config"
-    content      = data.template_file.init.rendered
+    content      = templatefile("${path.module}/scripts/init.cfg", 
+      {}
+    )
   }
+  # Base Userdata
   part {
     content_type = "text/x-shellscript"
-    content      = data.template_file.userdata.rendered
+    content      = templatefile("${path.module}/scripts/userdata.sh", 
+      {
+        debug = var.debug_script,
+      }
+    )
   }
+  # Cloudwatch config
   part {
     content_type = "text/x-shellscript"
-    content      = data.template_file.cwldata.rendered
+    content      = templatefile("${path.module}/scripts/cwldata.sh", 
+      {
+        log_group = aws_cloudwatch_log_group.main.name,
+        debug = var.debug_script,
+      }
+    )
   }
+  # Additional script
   part {
     content_type = "text/x-shellscript"
     content      = var.extra_script
+  }
+  part {
+    content_type = "text/x-shellscript"
+    content      = base64gzip(templatefile("${path.module}/scripts/inspector.sh", 
+      {
+        var = "value",
+      }
+    ))
   }
 }
