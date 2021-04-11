@@ -1,46 +1,46 @@
 variable "name" {
   description = ""
-  default = ""
+  default     = ""
 }
 
 variable "cluster" {
   description = ""
-  default = ""
+  default     = ""
 }
 
 variable "task_definition" {
   description = ""
-  default = ""
+  default     = ""
 }
 
 variable "desired_count" {
   description = ""
-  default = ""
+  default     = ""
 }
 
 variable "launch_type" {
   description = ""
-  default = ""
+  default     = ""
 }
 
 variable "iam_role_arn" {
   description = ""
-  default = ""
+  default     = ""
 }
 
 variable "lb" {
   description = ""
-  default = ""
+  default     = ""
 }
 
 variable "target_group_name" {
   description = ""
-  default = ""
+  default     = ""
 }
 
 variable "port" {
   description = ""
-  default = ""
+  default     = ""
 }
 
 /*

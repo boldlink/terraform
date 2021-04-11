@@ -16,32 +16,32 @@ variable "ami_architecture" {
 
 variable "vpc_zone_identifier" {
   description = "A list of subnet IDs for the ec2 instances"
-  type = "list"
+  type        = list(string)
 }
 
 variable "max_size" {
   description = "Maximum nr of nodes on the ASG"
-  default = "10"
+  default     = "10"
 }
 
 variable "min_size" {
   description = "Minimum nr of nodes on the ASG"
-  default = "0"
+  default     = "0"
 }
 
 variable "desired_capacity" {
   description = "The inital capacity of the ASG, must be >= to min_size"
-  default = "0"
+  default     = "0"
 }
 
 variable "default_cooldown" {
   description = "Default time to wait before scaling up/down"
-  default = "120"
+  default     = "120"
 }
 
 variable "force_delete" {
   description = "Forces the deletion of the ASG even if not all instances are terminated, true/false"
-  default = false
+  default     = false
 }
 
 variable "health_check_grace_period" {
@@ -54,14 +54,13 @@ variable "health_check_type" {
 
 variable "termination_policies" {
   description = "OldestInstance, NewestInstance, OldestLaunchConfiguration, ClosestToNextInstanceHour, Default"
-  type = "list"
-  default = ["Default"]
+  type        = list(string)
+  default     = ["Default"]
 }
-
 
 variable "enabled_metrics" {
   description = "Allowed values are GroupMinSize, GroupMaxSize, GroupDesiredCapacity, GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances, GroupTerminatingInstances, GroupTotalInstances"
-  type = "list"
+  type        = list(string)
   default = [
     "GroupMinSize",
     "GroupMaxSize",
@@ -70,18 +69,18 @@ variable "enabled_metrics" {
     "GroupPendingInstances",
     "GroupStandbyInstances",
     "GroupTerminatingInstances",
-    "GroupTotalInstances"
+    "GroupTotalInstances",
   ]
 }
 
 variable "wait_for_capacity_timeout" {
   description = "Amount of time terraform waits before moving no"
-  default = "0"
+  default     = "0"
 }
 
 variable "protect_from_scale_in" {
   description = "Select this option for the instances to be protected from deletion on scale in, true/false"
-  default = false
+  default     = false
 }
 
 // SSH Key
@@ -112,7 +111,7 @@ variable "igr_protocol" {
 }
 
 variable "igr_cidr_blocks" {
-  type = "list"
+  type    = list(string)
   default = ["0.0.0.0/0"]
 }
 
@@ -122,9 +121,10 @@ variable "igr_cidr_blocks" {
 //}
 
 variable "egr_security_groups" {
-  type = "list"
+  type    = list(string)
   default = [""]
 }
+
 // Launch Template
 
 variable "instance_type" {
@@ -167,7 +167,9 @@ variable "ebs_encrypted" {
   default = false
 }
 
-variable "ebs_kms_key_id" { default = ""}
+variable "ebs_kms_key_id" {
+  default = ""
+}
 
 variable "ebs_optimized" {
   default = true
@@ -193,30 +195,37 @@ variable "delete_on_termination" {
   default = true
 }
 
-variable "debug_script" { default = "off" }
+variable "debug_script" {
+  default = "off"
+}
 
 variable "ecs_log_level" {
   default = "debug"
 }
 
-variable "config_bucket" {}
+variable "config_bucket" {
+}
 
-variable "secrets_bucket" {}
+variable "secrets_bucket" {
+}
 
-variable "region" {}
-
+variable "region" {
+}
 
 // Autoscaling variables and values
 
 variable "policy_type" {
   default = "TargetTrackingScaling"
 }
+
 variable "estimated_instance_warmup" {
   default = "120"
 }
+
 variable "metric_dimension_name" {
   default = "ClusterName"
 }
+
 variable "metric_dimension_metric_name_cpu" {
   default = "CpuReservation"
 }
@@ -244,21 +253,23 @@ variable "target_value_cpu" {
 variable "target_value_mem" {
   default = 60
 }
+
 // Alarms
 variable "sns_notifications" {
-  type = "list"
+  type = list(string)
   default = [
     "autoscaling:EC2_INSTANCE_LAUNCH",
     "autoscaling:EC2_INSTANCE_LAUNCH_ERROR",
     "autoscaling:EC2_INSTANCE_TERMINATE",
-    "autoscaling:EC2_INSTANCE_TERMINATE_ERROR"
+    "autoscaling:EC2_INSTANCE_TERMINATE_ERROR",
   ]
 }
 
-variable "sns_topic_arn" { default = "" }
+variable "sns_topic_arn" {
+  default = ""
+}
 
 // Userdata
-
 
 variable "ecs_reserved_memory" {
   default = 512
@@ -278,7 +289,7 @@ variable "ecs_engine_auth_data" {
 
 variable "docker_host" {
   description = " Linux(default) 'unix:///var/run/docker.sock' and Win '////./pipe/docker_engine' "
-  default = ""
+  default     = ""
 }
 
 variable "ecs_logfile" {
@@ -328,10 +339,12 @@ variable "env" {
 
 variable "stack_type" {
   description = "Variable that sets type of machine for the user_data ssh script, at the moment values on the stack can be bastion, ecs"
-  default = "ecs"
+  default     = "ecs"
 }
 
-variable "del_ec2_user" { default = "true" }
+variable "del_ec2_user" {
+  default = "true"
+}
 
 /*
 Tags
@@ -344,17 +357,18 @@ variable "tag_env" {
 
 variable "other_tags" {
   description = "For adding an additional values for tags"
-  type = "map"
-  default = {}
+  type        = map(string)
+  default     = {}
 }
-
 
 variable "name" {
   description = "The name of the ECS cluster"
-  default = ""
+  default     = ""
 }
 
-variable "autoscaling_enabled" {}
+variable "autoscaling_enabled" {
+}
 
-variable "sns_enabled" {}
+variable "sns_enabled" {
+}
 
