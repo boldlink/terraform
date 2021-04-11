@@ -1,18 +1,16 @@
-terraform {
-  required_version  = "> 0.11.2"
-}
 
 resource "aws_waf_size_constraint_set" "main" {
-  name = "${var.name}"
+  name = var.name
 
   size_constraints {
-    text_transformation = "${var.text_transformation}"
-    comparison_operator = "${var.comparison_operator}"
-    size                = "${var.size}"
+    text_transformation = var.text_transformation
+    comparison_operator = var.comparison_operator
+    size                = var.size
 
     field_to_match {
-      data = "${var.field_to_match_data}"
-      type = "${var.field_to_match_type}"
+      data = var.field_to_match_data
+      type = var.field_to_match_type
     }
   }
 }
+
