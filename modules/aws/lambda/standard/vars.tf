@@ -1,12 +1,27 @@
-variable "function_name" {}
+variable "name" {
+}
 
-variable "execution_role" {}
+variable "iam_policy_path" {
+}
 
-variable "s3_bucket" {}
+variable "assume_role_policy" {
+}
 
-variable "s3_key" {}
+variable "iam_policy_doc" {
+}
 
-variable "source_code_hash" {}
+variable "s3_bucket" {
+}
+
+variable "s3_key" {
+}
+
+variable "source_code_hash" {
+  description = "To allow Terraform to detect when the Lambda source code has changed"
+  default     = ""
+}
+
+//variable "target_arn" { default = "" }
 
 variable "handler" {
   default = ""
@@ -17,7 +32,7 @@ variable "memory_size" {
 }
 
 variable "runtime" {
-  default = "nodejs8.10 | nodejs10.x | java8 | python2.7 | python3.6 | python3.7 | dotnetcore1.0 | dotnetcore2.1 | go1.x | ruby2.5 | provided"
+  description = "nodejs8.10 | nodejs10.x | java8 | python2.7 | python3.6 | python3.7 | dotnetcore1.0 | dotnetcore2.1 | go1.x | ruby2.5 | provided"
   default = "nodejs8.10"
 }
 
@@ -34,12 +49,12 @@ variable "publish" {
 }
 
 variable "subnet_ids" {
-  type    = "list"
+  type    = list(string)
   default = []
 }
 
 variable "security_group_ids" {
-  type    = "list"
+  type    = list(string)
   default = []
 }
 
@@ -52,7 +67,7 @@ variable "kms_key_arn" {
 }
 
 variable "environment_variables" {
-  type    = "map"
+  type    = map(string)
   default = {}
 }
 
@@ -63,6 +78,7 @@ variable "tag_env" {
 }
 
 variable "other_tags" {
-  type    = "map"
+  type    = map(string)
   default = {}
 }
+

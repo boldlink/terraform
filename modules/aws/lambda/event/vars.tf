@@ -12,3 +12,4 @@ variable "enabled" {
   description = "Determines if the mapping will be enabled on creation"
   default     = true
 }
+
