@@ -17,6 +17,13 @@ resource "aws_iam_policy" "main" {
   description = "${var.name} IAM policy"
   path        = var.iam_path
   policy      = var.iam_policy_doc
+  tags = merge(
+    {
+      "Name"        = var.name
+      "Environment" = var.tag_env
+    },
+    var.other_tags,
+  )
 }
 
 resource "aws_iam_role_policy_attachment" "main" {
