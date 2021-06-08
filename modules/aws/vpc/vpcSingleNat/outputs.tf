@@ -30,9 +30,9 @@ output "route_table_db" {
   value = [aws_route_table.db.*.id]
 }
 
-output "route_table_app" {
-  value = [aws_route_table.app.*.id]
-}
+# output "route_table_app" {
+#   value = [aws_route_table.app.*.id]
+# }
 
 output "route_table_rs" {
   value = [aws_route_table.rs.*.id]

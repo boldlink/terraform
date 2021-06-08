@@ -67,6 +67,18 @@ variable "private_subnets" {
   default     = []
 }
 
+variable "eks_public_subnets" {
+  description = "The IP ranges for the Public subnets"
+  default     = []
+}
+
+variable "eks_private_subnets" {
+  description = "Ranges for the VPC Private subnets"
+  default     = []
+}
+
+variable "cluster_name" { default = "none" }
+
 variable "app_subnets" {
   description = "Ranges for the VPC Private db subnets"
   default     = []
