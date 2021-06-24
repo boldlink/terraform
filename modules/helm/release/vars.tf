@@ -73,7 +73,7 @@ variable "dev" {
     default = ""
 }
   
-variable "version" {
+variable "chart_version" {
     description = "(Optional) Specify the exact chart version to install. If this is not specified, the latest version is installed."
     type = string 
     default = ""
@@ -199,7 +199,7 @@ variable "description" {
     default = ""
 }
   
-variable "postrender" {
+variable "binary_path" {
     description = "(Required) relative or full path to command binary."
     type = string
     default = ""
@@ -208,44 +208,11 @@ variable "postrender" {
 variable "lint" {
     description = "(Optional) Run the helm chart linter during the plan. Defaults to false."
     type = bool
+    default = true
+}
+
+variable "create_namespace" {
+    description = "(Optional) Create the namespace if it does not yet exist."
+    type = bool
     default = false
 }
-
-variable "" {
-    description = ""
-    type = 
-    default = 
-}
-
-variable "" {
-    description = ""
-    type = 
-    default = 
-}
-
-variable "" {
-    description = ""
-    type = 
-    default = 
-}
-
-variable "" {
-    description = ""
-    type = 
-    default = 
-}
-
-variable "" {
-    description = ""
-    type = 
-    default = 
-}
-
-variable "" {
-    description = ""
-    type = 
-    default = 
-}
-
-
-

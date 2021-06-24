@@ -8,7 +8,7 @@ resource "helm_release" "main" {
   repository_ca_file         = var.repository_ca_file
   repository_username        = var.repository_username
   repository_password        = var.repository_password
-  version                    = var.version
+  version                    = var.chart_version
   namespace                  = var.namespace
   verify                     = var.verify
   keyring                    = var.keyring
@@ -33,5 +33,6 @@ resource "helm_release" "main" {
       binary_path = var.binary_path
   }
   lint                       = var.lint
+  create_namespace = var.create_namespace
 }
 
