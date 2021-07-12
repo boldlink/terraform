@@ -5,7 +5,7 @@ Security Group
 resource "aws_security_group" "main" {
   name        = var.name
   description = "${var.name} Security Group"
-  vpc_id      = var.vpc_id
+  vpc_id      = "${var.vpc_id}"
   egress {
     from_port       = var.egr_from
     to_port         = var.egr_to

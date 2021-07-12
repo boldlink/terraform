@@ -1,27 +1,29 @@
-variable "vpc_id" {
-  description = "The vpc id to create the security group in"
+// Security Group
+variable "vpc_id" { description = "The vpc id to create the security group in" }
+
+variable "igr_from" {
+  description = "igr_from"
+  default     = 2049
 }
 
-variable "type" { default = "ingress" }
-
-################################
-variable "security_group" {
-  type    = map(string)
-  default = {}
+variable "igr_to" {
+  description = "igr_to"
+  default     = 2049
 }
 
-variable "sg_protocol" { default = "tcp" }
-
-
-################################
-variable "cidr_block" {
-  type    = map(string)
-  default = {}
+variable "igr_protocol" {
+  default = "tcp"
 }
 
-variable "cidr_protocol" { default = "tcp" }
+variable "igr_cidr_blocks" {
+  type    = list(string)
+  default = []
+}
 
-################################
+variable "igr_security_groups" {
+  type    = list(string)
+  default = []
+}
 
 variable "egr_from" {
   default = 0
@@ -41,9 +43,8 @@ variable "egr_cidr_blocks" {
 }
 
 variable "egr_security_groups" {
-  description = ""
-  type        = list(string)
-  default     = []
+  type    = list(string)
+  default = []
 }
 
 //efs
@@ -51,27 +52,27 @@ variable "name" { description = "The tag name" }
 
 variable "performance_mode" {
   description = "The file system performance mode. Can be either generalPurpose or maxIO"
-  default = "generalPurpose"
+  default     = "generalPurpose"
 }
 
 variable "encrypted" {
   description = "If true, the disk will be encrypted"
-  default = false
+  default     = false
 }
 
 variable "kms_key_id" {
   description = "The ARN for the KMS encryption key. When specifying kms_key_id, encrypted needs to be set to true"
-  default = ""
+  default     = ""
 }
 
 //variable "provisioned_throughput_in_mibps" { default = "" }
 
 // efs traget
-variable "subnet_ids_0" { description = "The ID of the subnet to add the mount target in"}
+variable "subnet_ids_0" { description = "The ID of the subnet to add the mount target in" }
 
-variable "subnet_ids_1" { description = "The ID of the subnet to add the mount target in"}
+variable "subnet_ids_1" { description = "The ID of the subnet to add the mount target in" }
 
-variable "subnet_ids_2" { description = "The ID of the subnet to add the mount target in"}
+variable "subnet_ids_2" { description = "The ID of the subnet to add the mount target in" }
 
 /*
 Tags
@@ -84,8 +85,8 @@ variable "tag_env" {
 
 variable "other_tags" {
   description = "For adding an additional values for tags"
-  type = map(string)
-  default = {}
+  type        = map(string)
+  default     = {}
 }
 
 

@@ -9,31 +9,31 @@ output "sg_arn" {
 
 // EFS target
 output "trg_id_0" {
-  value = ["${aws_efs_mount_target.0.id}"]
+  value = ["${aws_efs_mount_target.main_0.id}"]
 }
 
 output "trg_id_1" {
-  value = ["${aws_efs_mount_target.1.id}"]
+  value = ["${aws_efs_mount_target.main_1.id}"]
 }
 
 output "trg_id_2" {
-  value = ["${aws_efs_mount_target.2.id}"]
+  value = ["${aws_efs_mount_target.main_2.id}"]
 }
 
 output "trg_dns_name" {
-  value = ["${aws_efs_mount_target.0.dns_name}"]
+  value = ["${aws_efs_mount_target.main_0.dns_name}"]
 }
 
 output "trg_network_interface_id_0" {
-  value = aws_efs_mount_target.0.network_interface_id
+  value = aws_efs_mount_target.main_0.network_interface_id
 }
 
 output "trg_network_interface_id_1" {
-  value = aws_efs_mount_target.1.network_interface_id
+  value = aws_efs_mount_target.main_1.network_interface_id
 }
 
 output "trg_network_interface_id_2" {
-  value = aws_efs_mount_target.2.network_interface_id
+  value = aws_efs_mount_target.main_2.network_interface_id
 }
 
 // EFS
